@@ -18,7 +18,7 @@ namespace GOrganizer\Configuration;
  * @author Osama Agha <osama.agha24@gmail.com>
  */
 // distribute data on the redis databases based on first number of user id
-define('DISTRIBUTE_DATA_BY_USERID', TRUE);
+define('DISTRIBUTE_DATA_BY_USERID', FALSE);
 // select redis data base for all data ,it not meaningful if DISTRIBUTE_DATA_BY_USERID is true
 define('REDIS_GROUP_DATABASE', 0);
 // if true generete all keys with user Id else with noout user Id 

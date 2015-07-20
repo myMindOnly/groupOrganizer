@@ -1,8 +1,0 @@
-# Composer
-vendor/
-
-# Code coverage report
-coverage/
-
-# IDE
-.idea/

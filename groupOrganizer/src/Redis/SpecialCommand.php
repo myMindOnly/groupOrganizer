@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Predis groupOrganizer.
+ * This file is part of the groupOrganizer.
  * 
  * (c) Osama Agha <osama.agha24@gmail.com>
  * and open the template in the editor.

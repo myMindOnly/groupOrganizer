@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Predis groupOrganizer.
+ * This file is part of the groupOrganizer.
  * 
  * (c) Osama Agha <osama.agha24@gmail.com>
  * and open the template in the editor.
@@ -66,7 +66,7 @@ class GenerateRedisKey
     public function elementResidesInGroups($userId, $elmentId)
     {
         $this->key = NULL;
-        $this->buildKey(KeyAttribute::GROUPROOT);
+        $this->buildKey(KeyAttribute::ELEMENTROOT);
         $this->buildUserIdKey($userId);
         $this->buildKey(KeyAttribute::ELEMENTRESIDES);
         $this->buildKey($elmentId);
@@ -142,7 +142,7 @@ class GenerateRedisKey
      */
     public function buildUserIdKey($userId)
     {
-        if (GENERAT_EKEYS_WITH_USERID) {
+        if (!empty($userId)) {
             //        die(substr($userId, 0,1));
             if (!empty($userId)) {
                 $this->key .= KeyAttribute::KEYGLUE . KeyAttribute::USERID

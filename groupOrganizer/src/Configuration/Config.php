@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Predis groupOrganizer.
+ * This file is part of the groupOrganizer.
  * 
  * (c) Osama Agha <osama.agha24@gmail.com>
  * and open the template in the editor.
@@ -21,8 +21,6 @@ namespace GOrganizer\Configuration;
 define('DISTRIBUTE_DATA_BY_USERID', FALSE);
 // select redis data base for all data ,it not meaningful if DISTRIBUTE_DATA_BY_USERID is true
 define('REDIS_GROUP_DATABASE', 0);
-// if true generete all keys with user Id else with noout user Id 
-define('GENERAT_EKEYS_WITH_USERID', TRUE);
 
 
 
@@ -43,6 +41,19 @@ class Config
         );
     }
 
+        /**
+     * 
+     * @return redis connction
+     * 
+     * @author Osama Agha <osama.agha24@gmail.com>
+     */
+    public static function mongoHost()
+    {
+        return array(
+            'host' => 'localhost',
+            'port' => 27017,
+        );
+    }
     public static function register()
     {
         return 0;

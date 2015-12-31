@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Predis groupOrganizer.
+ * This file is part of the groupOrganizer.
  * 
  * (c) Osama Agha <osama.agha24@gmail.com>
  * and open the template in the editor.
@@ -12,18 +12,18 @@
 
 namespace GOrganizer\Connector;
 
-use \Predis\Client;
 use \GOrganizer\Configuration\Config;
 
 /**
  * 
  * @author Osama Agha <osama.agha24@gmail.com>
  */
-class GConnection
+class MGConnection
 {
     public function getConnection()
     {
-        $connection = new Client(Config::redisHost());
+        $host = Config::mongoHost();
+        $connection = new MongoClient( "mongodb://$host[host]:$host[port]" ); // connect to a remote host at a given port
         return $connection;
     }
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Predis groupOrganizer.
+ * This file is part of the groupOrganizer.
  * 
  * (c) Osama Agha <osama.agha24@gmail.com>
  * and open the template in the editor.
@@ -137,6 +137,10 @@ class Group extends Construct
         return $this->redis->zRevrangeByScore($this->redisKey->getKey(), $start, $end, $withscores, $offset, $count);
     }
 
+    public function getGeneralMutualGroupsElement($groups = array(), $offset = 0, $count = 10, $withscores = false, $start = '+inf', $end = '-inf')
+    {
+        $this->getMutualGroupsElement(NULL, $groups = array(), $offset = 0, $count = 10, $withscores = false, $start = '+inf', $end = '-inf');
+    }
     /**
      * 
      * @param int/string $userId

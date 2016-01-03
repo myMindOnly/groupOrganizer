@@ -14,8 +14,6 @@ namespace GOrganizer\Elements;
 
 use GOrganizer\Redis\Construct;
 use GOrganizer\Groups\Group;
-use GOrganizer\Mongo;
-
 
 /**
  * Description of Member
@@ -24,9 +22,6 @@ use GOrganizer\Mongo;
  */
 class Element extends Construct
 {
-
-    public $mongo;
-
     /**
      * 
      * @param type $userId arg can be db index or user id 
@@ -44,7 +39,6 @@ class Element extends Construct
 
         // Let the parent handle construction. 
         parent::__construct($db);
-        $this->mongo = new Mongo();
     }
 
     /**
@@ -70,34 +64,6 @@ class Element extends Construct
         $this->redisKey->elementIdCounter($userId);
         $elementId = $this->redis->iNcr($this->redisKey->getKey());
 
-        $m = new MongoClient();
-        $element['userId'] = $userId;
-        $element['elementId'] = $elementId;
-        echo "Connection to database successfully";
-        // select a database
-        $db = $this->mongo->groupOrganizer;
-        echo "<pre>";
-        print_r($db);
-        die('hehehe');
-        echo "Database mydb selected";
-        $collection = $db->element;
-        echo "Collection selected succsessfully";
-
-        $collection->insert($element);
-    }
-
-    /**
-     * 
-     * @param type $userId
-     * @param type $element
-     * 
-     * @author  Osama Agha <osama.agha24@gmail.com>
-     */
-    public function addElementRedis($userId, $element)
-    {
-        $this->redisKey->elementIdCounter($userId);
-        $elementId = $this->redis->iNcr($this->redisKey->getKey());
-
         $this->redisKey->element($userId, $elementId);
         $element['elementId'] = $elementId;
         $this->redis->hMSet($this->redisKey->getKey(), $element);
@@ -118,6 +84,7 @@ class Element extends Construct
         Group::getInstance($userId)->addGroupAndElement($userId, $elementId, $groupName);
     }
 
+    
     /**
      * 
      * @param type $groupName
@@ -129,7 +96,7 @@ class Element extends Construct
     {
         $this->addElementWithObject($userId = NULL, $groupName, $elementObject);
     }
-
+    
     /**
      * 
      * @param type $userId
